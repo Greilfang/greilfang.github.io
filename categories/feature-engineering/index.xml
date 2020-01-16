@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Feature Engineering | Academic</title>
+    <link>/categories/feature-engineering/</link>
+      <atom:link href="/categories/feature-engineering/index.xml" rel="self" type="application/rss+xml" />
+    <description>Feature Engineering</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 02 Nov 2019 21:35:12 +0800</lastBuildDate>
+    <image>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Feature Engineering</title>
+      <link>/categories/feature-engineering/</link>
+    </image>
+    
+    <item>
+      <title>Automating Feature Engineering in Supervised Learning</title>
+      <link>/post/automating-feature-engineering-in-supervised-learning/</link>
+      <pubDate>Sat, 02 Nov 2019 21:35:12 +0800</pubDate>
+      <guid>/post/automating-feature-engineering-in-supervised-learning/</guid>
+      <description>&lt;h2 id=&#34;automating-feature-engineering-in-supervised-learning&#34;&gt;Automating Feature Engineering in Supervised Learning&lt;/h2&gt;
+&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;举了一个例子。通过用 $sin $ 进行映射，样本点可以被分组。&lt;/p&gt;
+&lt;p&gt;$\to$ 定义一个映射函数&lt;/p&gt;
+&lt;p&gt;举心脏病的例子,说明实际上真正重要的因素往往是几个主要因素的组合,如$ BMI $&lt;/p&gt;
+&lt;p&gt;New tech consider the selection of features as black boxes, and is drien by the actual performance.&lt;/p&gt;
+&lt;p&gt;$\to$ applying reinforcement learning&lt;/p&gt;
+&lt;h3 id=&#34;challenges-in-performing-feature-engineering&#34;&gt;Challenges in Performing Feature Engineering&lt;/h3&gt;
+&lt;p&gt;人工极大根据经验&lt;/p&gt;
+&lt;p&gt;强化算法也不需要经验&lt;/p&gt;
+&lt;h3 id=&#34;terminology-and-problem-definition&#34;&gt;Terminology and Problem Definition&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;$F=\lbrace f_1,f_2,&amp;hellip;,f_m \rbrace$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$A\ target\ vector\ y$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$A\ suitable\ learning\ algorithm\ L$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$A\ measurement\ of\ performance\ m$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$A_L^m(F,y)\ signify\ performance$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;for example, $L$ can be &lt;strong&gt;Logitic regression&lt;/strong&gt; and m is &lt;strong&gt;cross entropy&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$Assume\ a\ set\ of\ transformation\ function\ \lbrace t_1,t_2,&amp;hellip;t_m \rbrace $&lt;/p&gt;
+&lt;p&gt;$$ f_{out}=t_i(f_in)\ where\ f_{in},f_{out} \in R^n$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;define set of operations: $+$&lt;/p&gt;
+&lt;p&gt;aim:
+$$
+F^*=argmax_{F1,F2}A^m_L(F_1 \bigcup F_2)
+\ F1\ from\ original\ dataset
+\ F2\ form\ derived\ dataset
+$$&lt;/p&gt;
+&lt;h3 id=&#34;a-few-simple-approaches&#34;&gt;A Few Simple Approaches&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Apply all $Transformation\ Function$ to the given data and sum them up&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Ad: Easy&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Dd:computation inefficiency &amp;amp; overfitting&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Every time add a new feature, train and evaluate&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;more scalable&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Dd: also slow because the model training and evaluation&lt;/p&gt;
+&lt;p&gt;refuce the deep composition of transforms&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;img%5Csimple_way.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;hierarchical-exploration-of-feature-transformations&#34;&gt;Hierarchical Exploration of Feature Transformations&lt;/h3&gt;
+&lt;p&gt;idea: batching of new features &amp;amp; hierarchical composition&lt;/p&gt;
+&lt;h3 id=&#34;transformation-graph&#34;&gt;Transformation Graph&lt;/h3&gt;
+&lt;p&gt;The transformation graph: $G$&lt;/p&gt;
+&lt;p&gt;Given  Dataset:$D_0$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;After each transformation, the target will not change&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The node type:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;start&lt;/li&gt;
+&lt;li&gt;from $T(D_{before})$&lt;/li&gt;
+&lt;li&gt;from $D_1+D_2$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$\theta (G)$ refers to all nodes in $G$&lt;/p&gt;
+&lt;p&gt;$\lambda(D_0,D_1)$ refers to the transformation function $T$ makes $D_0 \to D_1$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;the best solution is always among one of the nodes&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;.%5Cimg%5CDAG.png&#34; alt=&#34;DAG&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;transformation-graph-exploration&#34;&gt;Transformation Graph Exploration&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Python&#34;&gt;Dataset D_0, MAX_SEARCH_TIMES
+# G_0 is start_gragh, D_0 is the start_dataset
+# G_i refers to the graph after i-1 transformation
+time =0
+while time &amp;lt; MAX_SEARCH_TIMES:
+    Nodes = θ(G_time)
+    b_ratio = time / MAX_SEARCH_TIMES
+    Nodes_plus,Transform_plus = argmax(n,t) Rank(G_time,Nodes,Transform,b_ratio)
+    G_(time+1)=Apply Transform_plus on Nodes_plus
+    time = time+1
+ &#39;&#39;&#39;
+ time can be any element through the exploration, like consuming time
+ &#39;&#39;&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;learning-optimal-traversal-policy&#34;&gt;Learning Optimal Traversal Policy&lt;/h3&gt;
+&lt;p&gt;consider the reinforcement as &lt;strong&gt;Markov Decision&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;the state at step i is divided into two parts:&lt;/p&gt;
+&lt;p&gt;(a). $G_i$ after i node-addtions&lt;/p&gt;
+&lt;p&gt;(b).the remaining budget $b_{ratio}=\frac {i}{B_{max}}$&lt;/p&gt;
+&lt;p&gt;Let the entire set of states as $S$&lt;/p&gt;
+&lt;p&gt;an action at step i is$&amp;lt;n,t&amp;gt;$&lt;/p&gt;
+&lt;p&gt;$n$ is nodes to add while $t$ is transformation function in accord&lt;/p&gt;
+&lt;p&gt;To each step i, we get a reward  $r_i$&lt;/p&gt;
+&lt;p&gt;$$
+r_i =max_{n&amp;rsquo;\in\theta(G_{i+1})}\ A(n&amp;rsquo;) - max_{n\in\theta(G_{i})}\ A(n)\ where\ r_0=0
+$$
+The cumulative reward over time from state $S_i$&lt;/p&gt;
+&lt;p&gt;$$
+R(S_i)=\sum_{j=1}^{B_{max}} \gamma ^i \cdot r_{i+j}
+$$
+We apply $Q-Learning$&lt;/p&gt;
+&lt;p&gt;$$
+Q(s,c)=r(s,c)+\gamma(R)^\prod (\delta(s,c))
+$$
+The aim is:&lt;/p&gt;
+&lt;p&gt;$$
+\prod^*(s,c)= arg\ max_cQ(S,C)
+$$&lt;/p&gt;
+&lt;p&gt;Give an approximate prediction:&lt;/p&gt;
+&lt;p&gt;$$
+Q(s,c)=w^c \cdot f(s) \where f(s)=f(g,n,t,d)
+$$&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Learning Feature Engineering</title>
+      <link>/post/learning-feature-engineering/</link>
+      <pubDate>Wed, 23 Oct 2019 21:35:12 +0800</pubDate>
+      <guid>/post/learning-feature-engineering/</guid>
+      <description>&lt;h2 id=&#34;learning-feature-engineering-for-classification&#34;&gt;Learning Feature Engineering for Classification&lt;/h2&gt;
+&lt;h3 id=&#34;the-structure&#34;&gt;The Structure&lt;/h3&gt;
+&lt;p&gt;a stack of ﬁxed-size representations of feature values per target class&lt;/p&gt;
+&lt;p&gt;passing the $LFE$ classifier requires a a ﬁxed size feature vector representation&lt;/p&gt;
+&lt;h3 id=&#34;problem-formulation&#34;&gt;Problem Formulation&lt;/h3&gt;
+&lt;p&gt;Consider a dataset $D$, with features, $F$=${f_1,&amp;hellip;,f_n }$&lt;/p&gt;
+&lt;p&gt;A target class, ${ \kappa}$&lt;/p&gt;
+&lt;p&gt;The transformation set  $T={T_1,&amp;hellip;T_m}$ and a classification task&lt;/p&gt;
+&lt;p&gt;A classification task $L$&lt;/p&gt;
+&lt;p&gt;The problem is to find $q$ best paradigm for constructing new features such that appending to the $D$ to maximizes the accuracy of $L$&lt;/p&gt;
+&lt;p&gt;Each paradigm consists of a candidate transformation $T_c \in T$ of arity $r$ ,an ordered list of features $[ f_i,&amp;hellip;,f_{i+r-1}]$ and a usefulness score.&lt;/p&gt;
+&lt;h3 id=&#34;transformation-recommendation&#34;&gt;Transformation Recommendation&lt;/h3&gt;
+&lt;p&gt;LFE models the problem of predicting a useful r-ary transformation $T_c \in T_r$($ T_r\ is\ the\ set\ of\ transformation$) for a given list  $[f_1,&amp;hellip;,f_r]$&lt;/p&gt;
+&lt;p&gt;The input is a  set of features&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;one vs rest approach:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Each transformation is modelled as a MLP binary classification with real-valued confidence score as output.&lt;/p&gt;
+&lt;p&gt;Apply the $|T_r|$ MLP on features, if the confidence score &amp;gt; threshold $\theta$ ,then choose this transformation.&lt;/p&gt;
+&lt;p&gt;$$
+c = arg\ max_k(R_{[f_1,&amp;hellip;,f_r]})\&lt;br&gt;
+f(n)= \begin{cases} T_c, &amp;amp;\text {if $g_c$($R_{f_1,&amp;hellip;f_r}$) }&amp;gt;\theta
+\ none,&amp;amp; \text{otherwise} \end{cases}
+$$&lt;/p&gt;
+&lt;h3 id=&#34;feature-class-representation&#34;&gt;Feature-Class Representation&lt;/h3&gt;
+&lt;p&gt;The transformation are used to reveal and improve significance correlation or discriminative information between features and class labels.&lt;/p&gt;
+&lt;p&gt;Correlation $\uparrow$ the effect $uparrow$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;work on improving the correlation!&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;LFE represents feature $f$ in a dataset with $k$ classes as follows:&lt;/p&gt;
+&lt;p&gt;$$
+R_f=[Q_f^{(1)};Q_f^{(2)};&amp;hellip;;Q_f^{(k)};
+$$&lt;/p&gt;
+&lt;p&gt;$Q_f^{(i)}$ is a fixed-sized representation of values in $f$ that are associate with class$i$  $\to$ $\text {Quatile Sketch Array}$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The generation of $Q_f^{(i)}$&lt;/strong&gt; :**&lt;/p&gt;
+&lt;p&gt;The high variability in size and range if feature values makes representative learning and PDF learning difficult.&lt;/p&gt;
+&lt;p&gt;We consider features as high dimensions. We determine a fixed size to capture correlations between features and classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Previous approaches:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Use meta-feature(the distribution of feature to transform the original features.)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Fixed-size sampling of both feature and classes. The samples need to reflect the distribution of features.&lt;/p&gt;
+&lt;p&gt;Such stratified sampling is difficult to apply on the multiple features with high correlations.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Feature Hashing can be generated for numerical features but the appropriate function the map small range of feature values to the same hash features is difficult to find.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;Quantile Sketching Array integrate these ways.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;It is familiar with histogram.&lt;/p&gt;
+&lt;p&gt;Here we use brute-force way to find k-quantile-point.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Concrete production of  Quantile Sketch:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Let $\nu_k$ be the bag of values of feature $f$ for training data point with label $c_k$ and $Q_f^{(i)}$ is the quantile sketch of $\nu_k$&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Scale values to a predefined range $[lb,wb]$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bucket all values in $\nu_k$ into a set of bins.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;For example, we partition $[lb,wb]$ into $r$ disjoint bins of uniform width,supposing width $w=\frac{wb-lb}r$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Assume the bins are ${b_0,&amp;hellip;,b_{r-1}}$,$b_j$ ranges from $[lb+j*w,lb+(j+1)*w]$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;function $B(v_l)$ associates the value $v_l$ in $\nu_k$ to the bin $b_j$&lt;/p&gt;
+&lt;p&gt;function $P(b_j)$ returns the number of feature values bucketed in $b_j$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Finally
+$$
+I(b_j)=\frac{P(b_j)}{\sum_{0\leq m&amp;lt;r}{P(b_m)}}
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;training&#34;&gt;Training&lt;/h3&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

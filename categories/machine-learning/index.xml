@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine Learning | Academic</title>
+    <link>/categories/machine-learning/</link>
+      <atom:link href="/categories/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <description>Machine Learning</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 09 Oct 2019 01:13:34 +0800</lastBuildDate>
+    <image>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Machine Learning</title>
+      <link>/categories/machine-learning/</link>
+    </image>
+    
+    <item>
+      <title>Federated Forest</title>
+      <link>/post/federated-forest/</link>
+      <pubDate>Wed, 09 Oct 2019 01:13:34 +0800</pubDate>
+      <guid>/post/federated-forest/</guid>
+      <description>&lt;h2 id=&#34;federated-forest&#34;&gt;Federated Forest&lt;/h2&gt;
+&lt;p&gt;joint model is necessary&lt;/p&gt;
+&lt;p&gt;how?&lt;/p&gt;
+&lt;p&gt;concept to model&lt;/p&gt;
+&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;四大贡献&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Secured privacy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;每个节点对其他节点是透明的,信息交换尽可能小&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Loseless&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;适用于$vertical federated learning$,相比于集中式 $federated learning$ 可以做到无损&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Efficiency&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;使用了MPI方法即时交换信息
+简单不受限的预测算法(树的节点数,分裂数等)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;可行性和广泛性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;支持分类和回归
+易于实现,一样准确,有效率和鲁棒&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;related-work&#34;&gt;Related Work&lt;/h3&gt;
+&lt;p&gt;其他论文的相关工作,引入模型,应用联邦学习,以及联邦学习的分类&lt;/p&gt;
+&lt;h4 id=&#34;federated-learning&#34;&gt;Federated learning&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;meta learning&lt;/li&gt;
+&lt;li&gt;multi-task&lt;/li&gt;
+&lt;li&gt;AdaBoost&lt;/li&gt;
+&lt;li&gt;logistic regression&lt;/li&gt;
+&lt;li&gt;vertical, horizontal, transfer 三种分类&lt;/li&gt;
+&lt;li&gt;secured federated transfer learning&lt;/li&gt;
+&lt;li&gt;增强学习还有基于树的&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;data-privacy-protection&#34;&gt;Data Privacy Protection&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;differential privacy 差分隐私&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不增加计算负担&lt;/li&gt;
+&lt;li&gt;降低模型表现&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;homomorphic encryption 同态加密&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;算法复杂&lt;/li&gt;
+&lt;li&gt;不支持none linear model(可以用泰勒展开近似)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;problem-formulation&#34;&gt;Problem Formulation&lt;/h3&gt;
+&lt;p&gt;The model is assumed a vertical federated learning.&lt;/p&gt;
+&lt;p&gt;There are M nodes&lt;/p&gt;
+&lt;p&gt;To each node:&lt;/p&gt;
+&lt;p&gt;$$
+The\ data\ dormain\ is D_i
+$$
+To all models:&lt;/p&gt;
+&lt;p&gt;$$
+Tha\ data\ dormain\ is D=D_1 \small \bigcup D_2 \small \bigcup &amp;hellip;  \small \bigcup D_m
+$$
+where 1＜ i ＜ M&lt;/p&gt;
+&lt;p&gt;$$
+Denote\ the\ feature\ space\ of\ D_m\ as\ F_m:
+$$&lt;/p&gt;
+&lt;p&gt;All features&amp;rsquo; true name are encoded in order to protect privacy&lt;/p&gt;
+&lt;p&gt;As assmuption, for 1＜ i,j＜ M:&lt;/p&gt;
+&lt;p&gt;In the work, sample nums are same and IDs are in accord&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Notation&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;现实中$M$通常很小&lt;/li&gt;
+&lt;li&gt;不讨论$ID$如何对齐这种问题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;基本架构和 federated learning 基本一样,label y 由1个节点提供&lt;/p&gt;
+&lt;h3 id=&#34;problem-statement&#34;&gt;Problem Statement&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Given:&lt;/strong&gt; Regional domain D~i~ and encrypted label $y$ on each client i, 1 ≤ i ≤ M.
+&lt;strong&gt;Learn:&lt;/strong&gt; A Federated Forest, such that for each tree in the forest:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;a complete tree model T is held on master;&lt;/li&gt;
+&lt;li&gt;a partial tree model Ti is stored on each client i, 1 ≤ i ≤ M&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Constraint:&lt;/strong&gt; The performance (accuracy, f1-score, MSE, e.t.c.) of the Federated Forest must be comparable to the non-federated random forest.&lt;/p&gt;
+&lt;h3 id=&#34;methodology&#34;&gt;Methodology&lt;/h3&gt;
+&lt;p&gt;对于单个节点有Alogorithm1&lt;/p&gt;
+&lt;p&gt;Alogorithm 1:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Python&#34;&gt;while 还有树要建立:
+    if (node收到 Fi,Di):
+    Function TreeBuild(){
+        建立一个空的树节点
+        if 满足剪枝条件 :
+            设置为叶节点,voting得出label
+        
+        &#39;&#39;&#39;设置要记录的初始量&#39;&#39;&#39;
+        purify,f_plus = -∞ , None
+        &#39;&#39;&#39;
+        如果master随机取到的fetures在该节点内还有没被作为分割点的
+        注意这里是计算,并不划分
+        &#39;&#39;&#39;
+        if Fi != None:
+            计算每个节点做分割点的信息增益,加入impurity_improvements
+            &#39;&#39;&#39;得到最好的,f_plus记录该最好的节点&#39;&#39;&#39;
+            best_purity = MAX(impurity_improvements)
+            f_plus=getNodeOf(best_purity)
+        
+        把 best_purity发给master
+
+        &#39;&#39;&#39;master告诉该节点这是全局最优&#39;&#39;&#39;
+        if 从master接收到的split_message:
+            &#39;&#39;&#39;节点正式划分&#39;&#39;&#39;
+            is_selected=True
+            划分样本
+            把 left_tree, right_tree发给master
+        else:
+        &#39;&#39;&#39;说明最优划分节点不是这课树&#39;&#39;&#39;
+            收到left_tree,right_tree各有哪些节点
+        
+        &#39;&#39;&#39;递归向下建树&#39;&#39;&#39;
+        left_tree=TreeBuild(left_tree)
+        right_tree=TreeBuild(right_tree)
+        return node
+    &#39;&#39;&#39;
+    一棵树建立完了,加入森林
+    可以把这个算法理解为,将计算信息增益的任务平摊到了每个节点
+    &#39;&#39;&#39;
+    Forests.append(Tree)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;针对master节点
+Alogorithm 2:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Python&#34;&gt;while 还需要建树 :
+    随机取D,F
+    对每个节点,把该节点的Fi发给该节点
+    Fuction TreeBuild(D,F,y):
+        if 满足剪枝条件:
+            设置为叶节点,voting得出label
+        
+        接受来自各个节点的增益值,node_best_purities
+        global_best_purity=MAX(node_best_purities)
+        &#39;&#39;&#39;确定最优划分特征的来源节点&#39;&#39;&#39;
+        selected_node=getNodeOf(global_best_purity)
+
+        for node in nodes:
+            if node is selected_node:
+                发split_messagte表示它被选中
+            else:
+                把划分结果left_tree,right_tree告知node
+        
+    返回node根节点
+    Forest.append(Tree)
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;单个client无法包含一个划分节点的特征的全部信息,但每个client的森林结构是一样的.&lt;/p&gt;
+&lt;p&gt;针对client节点的预测
+Alogorithm 3:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Python&#34;&gt;while 需要预测:
+    TreePrediction(Ti,Di_test,Fi):
+        &#39;&#39;&#39;Si是要预测的一个样本,in leaf表示预测完成&#39;&#39;&#39;
+        if Si is in leaf:
+            return (Si,Labeli)
+        else:
+            if 节点保存了划分信息(最优节点) :
+                划分
+                left_tree=TreePrediction(Ti_left,Di_test_left,Fi)
+                right_tree=TreePrediction(Ti_right,Di_test_right,Fi)
+            else:
+                left_tree=TreePrediction(Ti_left,Di_test_left,Fi)
+                right_tree=TreePrediction(Ti_right,Di_test_right,Fi)
+            return (left_tree,right_tree)
+        
+        把 (S1,S2,...,Sm) 送到master
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;根据论文,如果一个样本遇到有划分标准的节点,则划分,否则同时全部进入左右两个节点&lt;/p&gt;
+&lt;p&gt;对于决策树 $Ti$ 的每个叶节点,都会有一批样本,对第l个叶节点里的样本,记作 $S_i^l$, $(l \in L$, $L$是$T_i$的叶节点集合)&lt;/p&gt;
+&lt;p&gt;对&lt;/p&gt;
+&lt;p&gt;$$
+{S_i^l}_{i=1}^M
+$$
+取交集运算&lt;/p&gt;
+&lt;p&gt;每个节点的森林的结构是一样的,因此所有叶节点的位置和数目一一对应,可以做交集运算&lt;/p&gt;
+&lt;p&gt;虽然论文 appendix 的证明正规冗长,理解起来是不难的:
+可以理解为:&lt;/p&gt;
+&lt;p&gt;$$
+S\small\bigcap A\small\bigcap B\small\bigcap C = (S\small\bigcap A\small\bigcap B)\small\bigcap (S\small\bigcap C)
+$$
+$$\text{S是样本全集. A,B,C是分别满足条件a,b,c的样本集合}$$&lt;/p&gt;
+&lt;p&gt;Algorithm 4:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Python&#34;&gt;while 需要预测:
+    Gather{S1,S2,...Sm}
+    Obtain(S^1,S^2,...S^m)
+Return all the label 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;privacy-protection&#34;&gt;Privacy Protection&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Identities:&lt;/strong&gt; 对用户进行hash编码然后进行MD5加密&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Label:&lt;/strong&gt; encode和同态加密的权衡
+&lt;strong&gt;Feature:&lt;/strong&gt; feature名进行加密
+&lt;strong&gt;Communication:&lt;/strong&gt; RSA或ADS
+&lt;strong&gt;Moddel Storage:&lt;/strong&gt;  Federated Learning​ 的细节已经实现对模型的保护&lt;/p&gt;
+&lt;h3 id=&#34;experiment&#34;&gt;Experiment&lt;/h3&gt;
+&lt;p&gt;重点不是表现多好&lt;/p&gt;
+&lt;p&gt;而是Federated Learning​ 和 Classical Random Forest 表现的比较&lt;/p&gt;
+&lt;h3 id=&#34;heading&#34;&gt;结论&lt;/h3&gt;
+&lt;p&gt;Federated Forest 相比于 Classical Random Forest 速度快且无损.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

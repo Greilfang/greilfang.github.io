@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Authors | Academic</title>
+    <link>/authors/</link>
+      <atom:link href="/authors/index.xml" rel="self" type="application/rss+xml" />
+    <description>Authors</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language>
+    <image>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Authors</title>
+      <link>/authors/</link>
+    </image>
+    
+    <item>
+      <title></title>
+      <link>/authors/admin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/authors/admin/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;In the dark night, longing for a light of care&lt;/p&gt;
+&lt;p&gt;In the daylight, desiring for the swallow of a black hole&lt;/p&gt;
+&lt;p&gt;’Cause curiosity — seeks for what’s in the darkness&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Hi. My name is Fangpei, a student from Tongji University, Shanghai. I am majored in software engineering. My advisor is &lt;a href=&#34;https://scholar.google.com/citations?user=8xoKeR0AAAAJ&amp;amp;hl=zh-CN&#34;&gt;QingJiang SHI&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I am interested in making machine learning more scalable and interpretive.&lt;/p&gt;
+&lt;p&gt;My current research is about:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Federated Learning&lt;/li&gt;
+&lt;li&gt;Automated Feature Engineering.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
