@@ -72,6 +72,11 @@
   </url>
   
   <url>
+    <loc>/post/pysyft-notes/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/authors/</loc>
   </url>
   
