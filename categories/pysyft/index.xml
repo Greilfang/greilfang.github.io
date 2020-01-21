@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PySyft | Academic</title>
+    <link>/categories/pysyft/</link>
+      <atom:link href="/categories/pysyft/index.xml" rel="self" type="application/rss+xml" />
+    <description>PySyft</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 22 Jan 2020 01:25:19 +0800</lastBuildDate>
+    <image>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>PySyft</title>
+      <link>/categories/pysyft/</link>
+    </image>
+    
+    <item>
+      <title>PySyft Notes</title>
+      <link>/post/pysyft-notes/</link>
+      <pubDate>Wed, 22 Jan 2020 01:25:19 +0800</pubDate>
+      <guid>/post/pysyft-notes/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;hook = sy.TorchHook(torch)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Hook shows the usage of template method, a design pattern.&lt;/p&gt;
+&lt;p&gt;It extend the function and interfaces of torch.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;bob = sy.VirtualWorker(hook, id=&amp;quot;bob&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Define a node participating in federated training.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
