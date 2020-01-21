@@ -509,18 +509,5 @@ Return all the label
 </description>
     </item>
     
-    <item>
-      <title></title>
-      <link>/post/pysyft-notes/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/post/pysyft-notes/</guid>
-      <description>&lt;p&gt;Hook shows the usage of template method, a design pattern.&lt;/p&gt;
-&lt;p&gt;It extend the function and interfaces of torch.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;bob = sy.VirtualWorker(hook, id=&amp;quot;bob&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Define a node participating in federated training.&lt;/p&gt;
-</description>
-    </item>
-    
   </channel>
 </rss>
