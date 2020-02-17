@@ -619,6 +619,20 @@
 <pre><code class="language-python">bob = sy.VirtualWorker(hook, id=&quot;bob&quot;)
 </code></pre>
 <p>Define a node participating in federated training.</p>
+<pre><code class="language-python">x = torch.tensor([1,2,3,4,5])
+y = torch.tensor([1,1,1,1,1])
+# x y都是本地的数据
+z = x + y # z 也是本地的
+# 将x发送到alice、y发送到bob
+x_ptr = x.send(alice)
+y_ptr = y.send(bob)
+# 这一句不能执行，因为x_ptr是alice的数据，y_ptr是bob的数据
+z = x_ptr + y
+# 可以执行，x_ptr和y_ptr此时都在bob上
+x_ptr = x.send(bob)
+z = x_ptr+y_ptr
+</code></pre>
+<p>Only the manipulation between tensors in the same agent can be executed.</p>
 
     </div>
 
