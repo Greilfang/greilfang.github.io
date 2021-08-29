@@ -7,7 +7,7 @@
     <description>reproduction</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 02 Nov 2019 21:35:12 +0800</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>reproduction</title>
       <link>/categories/reproduction/</link>
     </image>
@@ -131,7 +131,7 @@ while time &amp;lt; MAX_SEARCH_TIMES:
 &lt;p&gt;$n$ is nodes to add while $t$ is transformation function in accord&lt;/p&gt;
 &lt;p&gt;To each step i, we get a reward  $r_i$&lt;/p&gt;
 &lt;p&gt;$$
-r_i =max_{n&amp;rsquo;\in\theta(G_{i+1})}\ A(n&amp;rsquo;) - max_{n\in\theta(G_{i})}\ A(n)\ where\ r_0=0
+r_i =max_{n&#39;\in\theta(G_{i+1})}\ A(n&#39;) - max_{n\in\theta(G_{i})}\ A(n)\ where\ r_0=0
 $$
 The cumulative reward over time from state $S_i$&lt;/p&gt;
 &lt;p&gt;$$
@@ -227,7 +227,7 @@ where 1＜ i ＜ M&lt;/p&gt;
 &lt;p&gt;$$
 Denote\ the\ feature\ space\ of\ D_m\ as\ F_m:
 $$&lt;/p&gt;
-&lt;p&gt;All features&amp;rsquo; true name are encoded in order to protect privacy&lt;/p&gt;
+&lt;p&gt;All features&#39; true name are encoded in order to protect privacy&lt;/p&gt;
 &lt;p&gt;As assmuption, for 1＜ i,j＜ M:&lt;/p&gt;
 &lt;p&gt;In the work, sample nums are same and IDs are in accord&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Notation&lt;/strong&gt;&lt;/p&gt;
@@ -362,7 +362,7 @@ Return all the label
 &lt;h3 id=&#34;experiment&#34;&gt;Experiment&lt;/h3&gt;
 &lt;p&gt;重点不是表现多好&lt;/p&gt;
 &lt;p&gt;而是Federated Learning​ 和 Classical Random Forest 表现的比较&lt;/p&gt;
-&lt;h3 id=&#34;heading&#34;&gt;结论&lt;/h3&gt;
+&lt;h3 id=&#34;结论&#34;&gt;结论&lt;/h3&gt;
 &lt;p&gt;Federated Forest 相比于 Classical Random Forest 速度快且无损.&lt;/p&gt;
 </description>
     </item>
